@@ -6,7 +6,7 @@
   
   <body>
     
-    <form method="post" action="{{url_for('signup')}}">
+    <form method="post" enctype="multipart/form-data" action="{{url_for('signup')}}">
       Firstname: <input type ="text" name = "firstname"/>
       <br>
       Lastname: <input type="text" name = "lastname"/>

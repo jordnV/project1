@@ -8,12 +8,14 @@ class User(db.Model):
   sex = db.Column(db.String(80))
   age = db.Column(db.Integer)
   
-  def __init__(self, firstname,lastname,image,sex,age):
+  def __init__(self, firstname,lastname,pimage,sex,age):
     self.firstname = firstname
     self.lastname = lastname
     self.pimage = pimage
     self.sex = sex
     self.age = age
+
+    
     
   def __repr__(self):
     return'<User%r>'%self.firstname

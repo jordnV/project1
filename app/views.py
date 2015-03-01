@@ -5,7 +5,8 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 
 This file creates your application.
 """
-
+import os
+import sys
 from app import app
 from app import db 
 from app.models import User
@@ -25,15 +26,16 @@ def home():
 def signup():
   if request.method =="POST":
     filefolder ='./app/static/img'
-    firstname = form.request['firstname']
-    lastname = form.request['lastname']
-    image = form.files['pimage']
+    firstname = request.form['firstname']
+    lastname = request.form['lastname']
+    image = request.files['pimage']
     imagename = image.filename
     image.save(os.path.join(filefolder, imagename))
-    age = form.request['age']
-    sex = form.request['sex']
-    newprofile = (firstname, lastname,os.path.join(filefolder, imagename),age,sex)  
-    
+    age = request.form['age']
+    sex = request.form['sex']
+    newprofile = User(firstname, lastname,os.path.join(filefolder, imagename),sex,age)  
+    db.session.add(newprofile)
+    db.session.commit()
   return render_template('createprofile.html')
 
 
